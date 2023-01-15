@@ -29,7 +29,7 @@ struct ContentView: View {
                 Text("Guess the Flag")
                     .font(.largeTitle.bold())
                     .foregroundColor(.primary)
-                VStack(spacing: 15){
+                VStack(spacing: 25){
                     VStack {
                         Text("Tap the flag of")
                             .foregroundStyle(.primary)
@@ -57,7 +57,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Text("Score is \(score)")
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(Color.accentColor)
                     .font(.title).bold()
                 Spacer()
                 
