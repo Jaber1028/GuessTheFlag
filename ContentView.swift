@@ -49,7 +49,6 @@ struct ContentView: View {
                                 .shadow(radius: 23)
                         }
                     }
-                    .padding()
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 40)
