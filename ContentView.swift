@@ -33,6 +33,7 @@ struct ContentView: View {
                 Text("Guess the Flag")
                     .font(.largeTitle.bold())
                     .foregroundColor(.primary)
+                
                 if !gameOver {
                     Text("Turn: \(turnCount + 1) out of 8")
                     VStack(spacing: 25){
