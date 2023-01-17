@@ -12,14 +12,14 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var score = 0
     
-    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"]
+    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var seenSoFarCountries = [String]()
     @State private var correctAnswer = Int.random(in: 0...2)
     
     @State private var turnCount = 0
     @State private var gameOver = false
+    
     var body: some View {
-        
         ZStack(alignment: .top) {
             RadialGradient(stops: [
                 .init(color: Color(red: 0.75, green: 0.04, blue: 0.08), location: 0.1),
@@ -110,6 +110,7 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        showingScore = false
     }
     
     func resetGame() {
