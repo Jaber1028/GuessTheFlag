@@ -116,6 +116,7 @@ struct ContentView: View {
         score = 0
         gameOver = false
         countries.append(contentsOf: seenSoFarCountries)
+        countries.shuffle()
     }
 }
 struct ContentView_Previews: PreviewProvider {
