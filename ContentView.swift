@@ -101,9 +101,7 @@ struct ContentView: View {
         else {
             scoreTitle = "Wrong! This is actually \(countries[number])'s flag!"
         }
-        
-        seenSoFarCountries.append(countries[number])
-        countries.remove(at: number)
+    
         
         turnCount += 1
         
@@ -117,9 +115,12 @@ struct ContentView: View {
     }
     
     func askQuestion() {
+        var correctFlag = countries[correctAnswer]
         showingScore = false
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        countries.remove(at: countries.firstIndex(of: correctFlag) ?? 0)
+        seenSoFarCountries.append(correctFlag)
 
     }
     
