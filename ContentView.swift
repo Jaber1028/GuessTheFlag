@@ -19,6 +19,19 @@ struct ContentView: View {
     @State private var turnCount = 0
     @State private var gameOver = false
     
+    // Gets the setup for a flag Image (For project 3 Challenge)
+    struct FlagImage: View {
+        var num : Int
+        var array: [String]
+        
+        var body: some View {
+            Image(array[num])
+                .renderingMode(.original)
+                .clipShape(RoundedRectangle(cornerRadius: 35))
+                .shadow(radius: 23)
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             RadialGradient(stops: [
@@ -49,10 +62,7 @@ struct ContentView: View {
                             Button {
                                 flagTapped(number)
                             } label: {
-                                Image(countries[number])
-                                    .renderingMode(.original)
-                                    .clipShape(RoundedRectangle(cornerRadius: 35))
-                                    .shadow(radius: 23)
+                                FlagImage(num: number, array: countries)
                             }
                         }
                     }
@@ -82,7 +92,6 @@ struct ContentView: View {
             Text("Ending score is \(score)")
         }
     }
-    
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
