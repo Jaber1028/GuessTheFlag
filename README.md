@@ -1,5 +1,5 @@
 # GuessTheFlag
-introduction to whole range of new SwiftUI functionality: stacks, gradients, images, alerts, asset catalogs, and more.
+Introduction to a whole range of new SwiftUI functionality: stacks, gradients, images, alerts, asset catalogs, and more.
 
 ## Description
 A simple trivia game, where the app asks you to match a country with one of the flags. 
