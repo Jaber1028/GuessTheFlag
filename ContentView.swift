@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var turnCount = 0
     @State private var gameOver = false
     
+    // To be used to flip flag whenever clicked on
+    @State private var selectedFlag = -1
+    
     // Gets the setup for a flag Image (For project 3 Challenge)
     struct FlagImage: View {
         var num : Int
@@ -64,6 +67,12 @@ struct ContentView: View {
                             } label: {
                                 FlagImage(num: number, array: countries)
                             }
+                            // gets the animation and by how much, but doesn't activate by itself
+                            .rotation3DEffect(.degrees(selectedFlag == number ? 360 : 0), axis: (x: 0, y: 1, z: 0))
+                            // This watches the value selectedFlag and runs animations when it detects it changed
+                            .opacity(selectedFlag != -1 && number != selectedFlag ? 0.20 : 1)
+                            .blur(radius: selectedFlag != -1 && number != selectedFlag ? 10 : 1)
+                            .animation(.default, value: selectedFlag)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -102,7 +111,7 @@ struct ContentView: View {
             scoreTitle = "Wrong! This is actually \(countries[number])'s flag!"
         }
     
-        
+        selectedFlag = number
         turnCount += 1
         
         if turnCount < 8 {
@@ -115,16 +124,18 @@ struct ContentView: View {
     }
     
     func askQuestion() {
-        var correctFlag = countries[correctAnswer]
+        selectedFlag = -1
+        let correctFlag = countries[correctAnswer]
         showingScore = false
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
-        countries.remove(at: countries.firstIndex(of: correctFlag) ?? 0)
+        countries.remove(at: countries.firstIndex(of: correctFlag)!)
         seenSoFarCountries.append(correctFlag)
 
     }
     
     func resetGame() {
+        selectedFlag = -1
         turnCount = 0
         score = 0
         gameOver = false
